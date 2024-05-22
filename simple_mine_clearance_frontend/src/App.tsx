@@ -234,10 +234,10 @@ function MoveCallGameClick(r: number, l: number, gameInfoID: string, signAndExec
 				// console.log(result);
 				let showed = false;
 				for (let event of result.events) {
-					if (event.type === "0xb99b84b4ab0113482696f92517cc77e86210425ffd489528ceee8f3b5e71f0ab::game::GameEvent") {
+					if (event.type === `"${Package}::game::GameEvent"`) {
 						// console.log(event.parsedJson.checkerboard);
 						ChangeCheckerboard(event.parsedJson.checkerboard);
-					} else if (event.type === "0xb99b84b4ab0113482696f92517cc77e86210425ffd489528ceee8f3b5e71f0ab::game::GameSuccessEvent") {
+					} else if (event.type === `"${Package}::game::GameSuccessEvent"`) {
 						ShowFeedBack("success_alert");
 						showed = true;
 					} else {
