@@ -181,7 +181,12 @@ module simple_mine_clearance::game {
         while (i < MaxRow) {
             let mut j = 0;
             while (j < MaxList) {
-                dfs(i, j, checkerboard, hash);
+                if (!confirm_safe(i, j, hash)) {
+                    let square = &mut checkerboard[i][j];
+                    *square = char(b"x"[0]);
+                } else {
+                    dfs(i, j, checkerboard, hash);
+                };
                 j = j + 1;
             };
             i = i + 1;

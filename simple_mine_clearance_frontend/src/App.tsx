@@ -16,8 +16,8 @@ import { ConnectButton, useCurrentAccount, useSignAndExecuteTransactionBlock } f
 const MaxRow = 10;
 const MaxList = 20;
 
-const Package = "0x3f06195a34f234ac7989467fae72fa28a9f2596c821c7b4a6e0175c2347c5d53";
-const GameCap = "0x121b1f0b9f44d94c50338b44249045c7354f5e3eaf506200440c9d03fc18146b";
+const Package = "0xc24b22cc29dda175d6dadb44dc030d0416389f6790e709ddf39e979ff9b6b2cc";
+const GameCap = "0x86e7b3970e297e2c6cacc38bfc159c378edb5434e5d0974e3124f6720bdc780e";
 const GameEvent = `${Package}::game::GameEvent`;
 const GameSuccessEvent = `${Package}::game::GameSuccessEvent`;
 // const GameOverEvent = `"${Package}::game::GameOverEvent"`;
