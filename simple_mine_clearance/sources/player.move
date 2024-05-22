@@ -138,6 +138,7 @@ module simple_mine_clearance::player {
             *square = char(b"x"[0]);
 
             // emit and destroy game info
+            game::open_checkerboard(&mut checkerboard, &hash);
             game::failure_emit(&checkerboard);
             destroy_game_info(game_info);
         };
@@ -194,6 +195,7 @@ module simple_mine_clearance::player {
             
             // update attempt, emit and destroy game info
             task.failed_attempt();
+            game::open_checkerboard(&mut checkerboard, &hash);
             game::failure_emit(&checkerboard);
             destroy_game_info(game_info);
         };
