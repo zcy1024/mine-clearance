@@ -10,36 +10,36 @@ mine clearance
 ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ Created Objects:                                                                                   │
 │  ┌──                                                                                               │
-│  │ ObjectID: 0x088ecb128b4ef7a65d8e751ad9c77faa0d74391269751011cc2720dff157696e                    │
-│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
-│  │ Owner: Shared                                                                                   │
-│  │ ObjectType: 0x557310c3bc6a66747a69232020b690313a9d833a70749557379ee1f196706cc7::admin::GameCap  │
-│  │ Version: 28132065                                                                               │
-│  │ Digest: 8FTSKNzMm5YFk4uan6E7kGCNeq7HVr2Sr4YPo1oysoUK                                            │
-│  └──                                                                                               │
-│  ┌──                                                                                               │
-│  │ ObjectID: 0x2990ab6599ebb9eabf946a6e9910774f5f74a05200e16f373cb80476b3892442                    │
-│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
-│  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
-│  │ ObjectType: 0x2::package::UpgradeCap                                                            │
-│  │ Version: 28132065                                                                               │
-│  │ Digest: HeH7GHofwgpxNtpy12gyvk3Paw8gTvnS23eMrbdakqaV                                            │
-│  └──                                                                                               │
-│  ┌──                                                                                               │
-│  │ ObjectID: 0x5befcb4295ec8e940f33b187ea0af51b5f40046404700a7f5f740e650bac56a3                    │
+│  │ ObjectID: 0x0d0c3ac56d74bcfc220e7f3b2168bfd043c96152a36846e48d92b24f3ca9c57e                    │
 │  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
 │  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
 │  │ ObjectType: 0x2::package::Publisher                                                             │
-│  │ Version: 28132065                                                                               │
-│  │ Digest: BZpQMYHHNadg2p6LpDdvtLeMXYzMqsxAMgARzTGSZcop                                            │
+│  │ Version: 28132070                                                                               │
+│  │ Digest: BNkmyFwG5ymYyCYNeAkC6Mx5P3eRELa7fs2SpxJ9gRG6                                            │
 │  └──                                                                                               │
 │  ┌──                                                                                               │
-│  │ ObjectID: 0xb8a17896af464f448bb411f2094258b505e04a6d1a1b16a4a5dcd946dce5a8ed                    │
+│  │ ObjectID: 0x121b1f0b9f44d94c50338b44249045c7354f5e3eaf506200440c9d03fc18146b                    │
 │  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
 │  │ Owner: Shared                                                                                   │
-│  │ ObjectType: 0x557310c3bc6a66747a69232020b690313a9d833a70749557379ee1f196706cc7::task::TaskList  │
-│  │ Version: 28132065                                                                               │
-│  │ Digest: 3572h5Y712wgsujSrrzZqY8pWa3J7XRpiPtSSXfxrACd                                            │
+│  │ ObjectType: 0x3f06195a34f234ac7989467fae72fa28a9f2596c821c7b4a6e0175c2347c5d53::admin::GameCap  │
+│  │ Version: 28132070                                                                               │
+│  │ Digest: 9inN5Sqwwy6hJBYFaYSWf63C8cNGcGYGHa8vqUtedmzb                                            │
+│  └──                                                                                               │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x664046062e110da08e6a3af94fb4a75c579a4ffba83f698cdc963ef84b26152e                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
+│  │ ObjectType: 0x2::package::UpgradeCap                                                            │
+│  │ Version: 28132070                                                                               │
+│  │ Digest: FUNAWTc3DdWNcvwhvzurFStHM1jhrZZFVZmwvbcy5zm3                                            │
+│  └──                                                                                               │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x773f9201a52dbb186cce62121f2f2b56714fffbfeedcf60cb3052e1ae54ca2e1                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Shared                                                                                   │
+│  │ ObjectType: 0x3f06195a34f234ac7989467fae72fa28a9f2596c821c7b4a6e0175c2347c5d53::task::TaskList  │
+│  │ Version: 28132070                                                                               │
+│  │ Digest: 9uNc32ZLFT3tREx3LwZ3YiG1eqzR25MHaW6ap35D1bNo                                            │
 │  └──                                                                                               │
 │ Mutated Objects:                                                                                   │
 │  ┌──                                                                                               │
@@ -47,14 +47,14 @@ mine clearance
 │  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
 │  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
 │  │ ObjectType: 0x2::coin::Coin<0x2::sui::SUI>                                                      │
-│  │ Version: 28132065                                                                               │
-│  │ Digest: HKL7YESrVTmrA1gEnNmH3mvbuQMTaPqMfQAB5f1NostT                                            │
+│  │ Version: 28132070                                                                               │
+│  │ Digest: BmGQMKFVqWpqLSycCvKcRnYmUb2KT9WqdgFhRp3sboo7                                            │
 │  └──                                                                                               │
 │ Published Objects:                                                                                 │
 │  ┌──                                                                                               │
-│  │ PackageID: 0x557310c3bc6a66747a69232020b690313a9d833a70749557379ee1f196706cc7                   │
+│  │ PackageID: 0x3f06195a34f234ac7989467fae72fa28a9f2596c821c7b4a6e0175c2347c5d53                   │
 │  │ Version: 1                                                                                      │
-│  │ Digest: 4xcAekakgeXJj3BT1MK3q4vUq647HCdH955Cuc5XkspQ                                            │
+│  │ Digest: DPFKfWtBVZ4Ymo4CfxTcZVvvjs3i89Yktj3RgoAa1uPe                                            │
 │  │ Modules: admin, game, player, task                                                              │
 │  └──                                                                                               │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────╯

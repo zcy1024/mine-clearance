@@ -177,10 +177,10 @@ module simple_mine_clearance::game {
     }
 
     public fun open_checkerboard(checkerboard: &mut vector<vector<Char>>, hash: &vector<u8>) {
-        let mut i = 1;
-        while (i <= MaxRow) {
-            let mut j = 1;
-            while (j <= MaxList) {
+        let mut i = 0;
+        while (i < MaxRow) {
+            let mut j = 0;
+            while (j < MaxList) {
                 dfs(i, j, checkerboard, hash);
                 j = j + 1;
             };
