@@ -18,6 +18,9 @@ const MaxList = 20;
 
 const Package = "0xb99b84b4ab0113482696f92517cc77e86210425ffd489528ceee8f3b5e71f0ab";
 const GameCap = "0x304d34e1f285907f8244fb7e99af7dbb9123e9d1edbe058b21f465d344d8fd6e";
+const GameEvent = `${Package}::game::GameEvent`;
+const GameSuccessEvent = `${Package}::game::GameSuccessEvent`;
+// const GameOverEvent = `"${Package}::game::GameOverEvent"`;
 
 function App() {
 	const queryClient = new QueryClient();
@@ -97,6 +100,10 @@ function DrawCheckerboard({gameInfoID}: {gameInfoID: string}) {
 		// const str = str1.concat(str2);
 		// // console.log(str);
 		// event.currentTarget.innerHTML = str;
+
+		let str = event.currentTarget.innerHTML.split('<', 1)[0];
+		if (str !== "&nbsp;")
+			return;
 
 		// event.target.disabled = true;
 
@@ -234,10 +241,10 @@ function MoveCallGameClick(r: number, l: number, gameInfoID: string, signAndExec
 				// console.log(result);
 				let showed = false;
 				for (let event of result.events) {
-					if (event.type === `"${Package}::game::GameEvent"`) {
+					if (event.type === GameEvent) {
 						// console.log(event.parsedJson.checkerboard);
 						ChangeCheckerboard(event.parsedJson.checkerboard);
-					} else if (event.type === `"${Package}::game::GameSuccessEvent"`) {
+					} else if (event.type === GameSuccessEvent) {
 						ShowFeedBack("success_alert");
 						showed = true;
 					} else {
@@ -283,12 +290,13 @@ function ChangeChess(html: Element, replace: string) {
 function ClearCheckerboard() {
 	const checkerboard = [];
 	for (let i = 0; i < MaxRow; i++) {
-		const rowStr = "";
+		let rowStr = "";
 		for (let j = 0; j < MaxList; j++)
-			rowStr.concat("-");
+			rowStr = rowStr.concat("-");
 		checkerboard.push(rowStr);
 	}
 	ChangeCheckerboard(checkerboard);
+	HiddenFeedBack();
 }
 
 export default App
