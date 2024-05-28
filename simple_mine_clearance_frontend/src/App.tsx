@@ -6,39 +6,59 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
 import { getFullnodeUrl } from '@mysten/sui.js/client';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ConnectButton, useCurrentAccount, useSignAndExecuteTransactionBlock } from '@mysten/dapp-kit';
+import { ConnectButton, useCurrentAccount, useSuiClientContext, useSignAndExecuteTransactionBlock } from '@mysten/dapp-kit';
 
 const MaxRow = 10;
 const MaxList = 20;
 
-const Package = "0xc24b22cc29dda175d6dadb44dc030d0416389f6790e709ddf39e979ff9b6b2cc";
-const GameCap = "0x86e7b3970e297e2c6cacc38bfc159c378edb5434e5d0974e3124f6720bdc780e";
-const GameEvent = `${Package}::game::GameEvent`;
-const GameSuccessEvent = `${Package}::game::GameSuccessEvent`;
+const suiMove = {
+	mainnet: {
+		Package: "0x9c402b6dd551e052f24086e9e3533e0879f010527c0cfe3e4e2b153efa31ece7",
+		GameCap: "0x3ff35e8d194640090ed39bedb36f6e57fe297a697627fb3677afbc93a65b952f",
+		GameEvent: "0x9c402b6dd551e052f24086e9e3533e0879f010527c0cfe3e4e2b153efa31ece7::game::GameEvent",
+		GameSuccessEvent: "0x9c402b6dd551e052f24086e9e3533e0879f010527c0cfe3e4e2b153efa31ece7::game::GameSuccessEvent"
+	},
+	testnet: {
+		Package: "0xc24b22cc29dda175d6dadb44dc030d0416389f6790e709ddf39e979ff9b6b2cc",
+		GameCap: "0x86e7b3970e297e2c6cacc38bfc159c378edb5434e5d0974e3124f6720bdc780e",
+		GameEvent: "0xc24b22cc29dda175d6dadb44dc030d0416389f6790e709ddf39e979ff9b6b2cc::game::GameEvent",
+		GameSuccessEvent: "0xc24b22cc29dda175d6dadb44dc030d0416389f6790e709ddf39e979ff9b6b2cc::game::GameSuccessEvent"
+	}
+};
+
+// const Package = "0xc24b22cc29dda175d6dadb44dc030d0416389f6790e709ddf39e979ff9b6b2cc";
+// const GameCap = "0x86e7b3970e297e2c6cacc38bfc159c378edb5434e5d0974e3124f6720bdc780e";
+// const GameEvent = `${Package}::game::GameEvent`;
+// const GameSuccessEvent = `${Package}::game::GameSuccessEvent`;
 // const GameOverEvent = `"${Package}::game::GameOverEvent"`;
 
 function App() {
 	const queryClient = new QueryClient();
-	const [network, setNetwork] = React.useState("testnet");
+	const [network, setNetwork] = React.useState("mainnet" as keyof typeof networks);
 	const networks = {
-		testnet: { url: getFullnodeUrl('testnet') },
 		mainnet: { url: getFullnodeUrl('mainnet') },
+		testnet: { url: getFullnodeUrl('testnet') },
 	};
 
 	return (
 		<div>
 			<QueryClientProvider client={queryClient}>
-				<SuiClientProvider networks={networks} network={network as keyof typeof networks} onNetworkChange={(network) => setNetwork(network)}>
+				<SuiClientProvider networks={networks} network={network} onNetworkChange={(network) => setNetwork(network)}>
 					<WalletProvider>
 						<div className='ConnectButton'>
 							<ConnectButton />
 						</div>
-						<MineClearance />
+						<NetworkSelector />
+						<MineClearance network={network}/>
 						<FeedBack />
 					</WalletProvider>
 				</SuiClientProvider>
@@ -47,7 +67,35 @@ function App() {
 	);
 }
 
-function MineClearance() {
+function NetworkSelector() {
+	const ctx = useSuiClientContext();
+	const [network, setNetwork] = React.useState("mainnet");
+	const changeNetwork = (event: SelectChangeEvent) => {
+		setNetwork(event.target.value as string);
+		ctx.selectNetwork(event.target.value as string);
+	};
+
+	return (
+		<Box sx={{ minWidth: 120, textAlign: 'center', minHeight: 66}}>
+			<FormControl>
+				<InputLabel id="network-select-label">Network</InputLabel>
+				<Select
+					labelId="network-select-label"
+					id="network-select"
+					value={network}
+					label="Network"
+					onChange={changeNetwork}
+				>
+					{Object.keys(ctx.networks).map((network) => (
+						<MenuItem value={network}>{network}</MenuItem>
+					))}
+				</Select>
+			</FormControl>
+		</Box>
+	);
+}
+
+function MineClearance({network}: {network: string}) {
 	const account = useCurrentAccount();
 	const { mutate: signAndExecuteTransactionBlock } = useSignAndExecuteTransactionBlock();
 	const [gameInfoID, setGameInfoID] = React.useState("");
@@ -61,7 +109,7 @@ function MineClearance() {
 		}
 
 		// console.log("Connected");
-		MoveCallStartGame(signAndExecuteTransactionBlock, setGameInfoID);
+		MoveCallStartGame(signAndExecuteTransactionBlock, setGameInfoID, network);
 		ClearCheckerboard();
 		return;
 	};
@@ -74,13 +122,13 @@ function MineClearance() {
 				<i id="NotConnect" hidden={true}>Please Connect First!!!</i>
 			</div>
 			<div id='Checkerboard'>
-				<DrawCheckerboard gameInfoID={gameInfoID}/>
+				<DrawCheckerboard gameInfoID={gameInfoID} network={network}/>
 			</div>
 		</div>
 	);
 }
 
-function DrawCheckerboard({gameInfoID}: {gameInfoID: string}) {
+function DrawCheckerboard({gameInfoID, network}: {gameInfoID: string, network: string}) {
 	const { mutate: signAndExecuteTransactionBlock } = useSignAndExecuteTransactionBlock();
 
 	const clickBoard = (event: any) => {
@@ -112,7 +160,7 @@ function DrawCheckerboard({gameInfoID}: {gameInfoID: string}) {
 		// ShowFeedBack("encourage_alert");
 		// ShowFeedBack("failure_alert");
 
-		MoveCallGameClick(Number(r), Number(l), gameInfoID, signAndExecuteTransactionBlock);
+		MoveCallGameClick(Number(r), Number(l), gameInfoID, network, signAndExecuteTransactionBlock);
 	}
 
 	const childboard = [];
@@ -180,14 +228,16 @@ function HiddenFeedBack() {
 	document.getElementById("failure_alert")!.style.display = "none";
 }
 
-function MoveCallStartGame(signAndExecuteTransactionBlock: any, setGameInfoID: any) {
+function MoveCallStartGame(signAndExecuteTransactionBlock: any, setGameInfoID: any, network: string) {
 	const txb = new TransactionBlock();
 	const [coin] = txb.splitCoins(txb.gas, [666]);
 
+	console.log(network);
+
 	txb.moveCall({
-		target: `${Package}::player::start_game`,
+		target: `${suiMove[network as keyof typeof suiMove].Package}::player::start_game`,
 		arguments: [
-			txb.object(GameCap),
+			txb.object(suiMove[network as keyof typeof suiMove].GameCap),
 			coin,
 		]
 	});
@@ -216,11 +266,11 @@ function MoveCallStartGame(signAndExecuteTransactionBlock: any, setGameInfoID: a
 	);
 }
 
-function MoveCallGameClick(r: number, l: number, gameInfoID: string, signAndExecuteTransactionBlock: any) {
+function MoveCallGameClick(r: number, l: number, gameInfoID: string, network: string, signAndExecuteTransactionBlock: any) {
 	const txb = new TransactionBlock();
 
 	txb.moveCall({
-		target: `${Package}::player::game_click`,
+		target: `${suiMove[network as keyof typeof suiMove].Package}::player::game_click`,
 		arguments: [
 			txb.pure(r),
 			txb.pure(l),
@@ -241,10 +291,10 @@ function MoveCallGameClick(r: number, l: number, gameInfoID: string, signAndExec
 				// console.log(result);
 				let showed = false;
 				for (let event of result.events) {
-					if (event.type === GameEvent) {
+					if (event.type === suiMove[network as keyof typeof suiMove].GameEvent) {
 						// console.log(event.parsedJson.checkerboard);
 						ChangeCheckerboard(event.parsedJson.checkerboard);
-					} else if (event.type === GameSuccessEvent) {
+					} else if (event.type === suiMove[network as keyof typeof suiMove].GameSuccessEvent) {
 						ShowFeedBack("success_alert");
 						showed = true;
 					} else {

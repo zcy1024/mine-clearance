@@ -1,8 +1,85 @@
-# mine-clearance
+# Mine Clearance
 
-mine clearance
+**Notes:** As a beginner, this work still has many loopholes and room for improvement, especially the front-end part, which does not fully demonstrate the functions implemented on the chain.
 
-# testnet
+## Sui Move
+
+`cd simple_mine_clearance`
+
+The source code on the chain is here, you can publish it yourself and play it yourself.
+
+## Vite + React + TypeScript + MUI
+
+```bash
+cd simple_mine_clearance_frontend
+pnpm install
+pnpm run dev
+o
+```
+
+You can view the front-end code here, or follow the steps above to open a browser and play.
+
+# On-chain deployment information
+
+## mainnet
+
+```bash
+╭────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Object Changes                                                                                     │
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Created Objects:                                                                                   │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x3ff35e8d194640090ed39bedb36f6e57fe297a697627fb3677afbc93a65b952f                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Shared( 149128449 )                                                                      │
+│  │ ObjectType: 0x9c402b6dd551e052f24086e9e3533e0879f010527c0cfe3e4e2b153efa31ece7::admin::GameCap  │
+│  │ Version: 149128449                                                                              │
+│  │ Digest: BVa8bjZoQ2AcuihSaMUUed55DqJgMf7TRgGNHU8neLEL                                            │
+│  └──                                                                                               │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x4da8f1bfcd44a9935da26ae9c695aad07a17998c17acd0904314876c31a3f65b                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
+│  │ ObjectType: 0x2::package::UpgradeCap                                                            │
+│  │ Version: 149128449                                                                              │
+│  │ Digest: ACftYZei3mM2G4N8GnymRfamm3WTGN1gAtnUdwhRuZJA                                            │
+│  └──                                                                                               │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x7119025f2bf850aa6e5c53c3f53924b43cc45c9970409f29ee1a81888a94ea62                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Shared( 149128449 )                                                                      │
+│  │ ObjectType: 0x9c402b6dd551e052f24086e9e3533e0879f010527c0cfe3e4e2b153efa31ece7::task::TaskList  │
+│  │ Version: 149128449                                                                              │
+│  │ Digest: 3hnLjt7EwRC3QevbN8YwJBDqJESKLgtqYmKioYbeWSrz                                            │
+│  └──                                                                                               │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x9e8a7b4db08298361ed45d3f05e8946cad8171e6871756a1b3cdbfaa9c7ebdc3                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
+│  │ ObjectType: 0x2::package::Publisher                                                             │
+│  │ Version: 149128449                                                                              │
+│  │ Digest: BhbvCYMbsCxkCfVoJvvLpS8scAYpvNJZAn43q9pmkD9y                                            │
+│  └──                                                                                               │
+│ Mutated Objects:                                                                                   │
+│  ┌──                                                                                               │
+│  │ ObjectID: 0x008696cb13e1f79d99f44ecfa62c4437979cf8e9e7db423fc01efc7213d8a9a4                    │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                      │
+│  │ Owner: Account Address ( 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 )   │
+│  │ ObjectType: 0x2::coin::Coin<0x2::sui::SUI>                                                      │
+│  │ Version: 149128449                                                                              │
+│  │ Digest: 12a4z57Ev45ma6AcGfaNyPrV2dZiAnkhja5TGaLkbCET                                            │
+│  └──                                                                                               │
+│ Published Objects:                                                                                 │
+│  ┌──                                                                                               │
+│  │ PackageID: 0x9c402b6dd551e052f24086e9e3533e0879f010527c0cfe3e4e2b153efa31ece7                   │
+│  │ Version: 1                                                                                      │
+│  │ Digest: A6A79ca65fK6WG1TusQSAuJbGhHnG5yCh4LJCVDonbND                                            │
+│  │ Modules: admin, game, player, task                                                              │
+│  └──                                                                                               │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## testnet
 
 ```bash
 ╭────────────────────────────────────────────────────────────────────────────────────────────────────╮
