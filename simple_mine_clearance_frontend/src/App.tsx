@@ -87,7 +87,7 @@ function NetworkSelector() {
 					onChange={changeNetwork}
 				>
 					{Object.keys(ctx.networks).map((network) => (
-						<MenuItem value={network}>{network}</MenuItem>
+						<MenuItem value={network} key={network}>{network}</MenuItem>
 					))}
 				</Select>
 			</FormControl>
@@ -232,7 +232,7 @@ function MoveCallStartGame(signAndExecuteTransactionBlock: any, setGameInfoID: a
 	const txb = new TransactionBlock();
 	const [coin] = txb.splitCoins(txb.gas, [666]);
 
-	console.log(network);
+	// console.log(network);
 
 	txb.moveCall({
 		target: `${suiMove[network as keyof typeof suiMove].Package}::player::start_game`,
